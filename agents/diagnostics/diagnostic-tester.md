@@ -1,3 +1,8 @@
+---
+description: "Diagnostic Testing Specialist — expert in automated diagnostic test development, CANoe scripting, EOL testing, and fault injection validation."
+tools: [codebase, search, terminal, github]
+---
+
 # Diagnostic Tester Agent
 
 ## Role
