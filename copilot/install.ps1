@@ -28,7 +28,8 @@ $agentFiles = Get-ChildItem -Recurse -Path $AgentsDir -Filter "*.md"
 if ($Uninstall) {
     $count = 0
     foreach ($file in $agentFiles) {
-        $target = Join-Path $PromptsDir "automotive-$($file.Name)"
+        $base   = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+        $target = Join-Path $PromptsDir "automotive-$base.agent.md"
         if (Test-Path $target) {
             Write-Host "  Remove: $target"
             if (-not $DryRun) { Remove-Item $target }
@@ -46,7 +47,8 @@ if (-not $DryRun) {
 
 $count = 0
 foreach ($file in $agentFiles) {
-    $name   = "automotive-$($file.Name)"
+    $base   = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+    $name   = "automotive-$base.agent.md"
     $target = Join-Path $PromptsDir $name
     if ($DryRun) {
         Write-Host "  [dry-run] Would copy: $($file.Name) -> $target"

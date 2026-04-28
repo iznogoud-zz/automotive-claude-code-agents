@@ -42,8 +42,8 @@ echo ""
 if $UNINSTALL; then
   count=0
   while IFS= read -r -d '' file; do
-    name="$(basename "$file")"
-    target="$PROMPTS_DIR/automotive-$name"
+    base="$(basename "$file" .md)"
+    target="$PROMPTS_DIR/automotive-$base.agent.md"
     if [[ -f "$target" ]]; then
       echo "  Remove: $target"
       $DRY_RUN || rm "$target"
@@ -59,7 +59,8 @@ $DRY_RUN || mkdir -p "$PROMPTS_DIR"
 
 count=0
 while IFS= read -r -d '' file; do
-  name="automotive-$(basename "$file")"
+  base="$(basename "$file" .md)"
+  name="automotive-$base.agent.md"
   target="$PROMPTS_DIR/$name"
   if $DRY_RUN; then
     echo "  [dry-run] Would copy: $(basename "$file") -> $target"
